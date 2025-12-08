@@ -1,0 +1,8 @@
+# Ignore the compiled binary file
+*.out
+*o
+simple_examples/*.out
+simple_examples/*.o
+# You can also ignore all .out files if needed
+# *.md
+
