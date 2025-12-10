@@ -1,8 +1,10 @@
 # Ignore the compiled binary file
 *.out
 *o
+*.pdf
 simple_examples/*.out
 simple_examples/*.o
+simple_examples/*.pdf
 # You can also ignore all .out files if needed
 # *.md
 
