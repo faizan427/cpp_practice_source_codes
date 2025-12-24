@@ -1,7 +1,7 @@
 #include "integrate.hpp"
 SINGELTON * SINGELTON::ptr = nullptr;
-SINGELTON::mutex mtx;
-SINGELTON()
+mutex SINGELTON::mtx;
+SINGELTON::SINGELTON()
 {
 	cout << "SINGELTON instance invoked" << endl;
 }
@@ -17,4 +17,5 @@ SINGELTON * SINGELTON::create_instance()
 	cout << "SINGELTON instance already created" << endl;
 }
 	mtx.unlock();
+	return ptr;
 }
