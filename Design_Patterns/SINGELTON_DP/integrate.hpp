@@ -9,9 +9,9 @@ class SINGELTON
 private:
 	static SINGELTON *ptr;
 	static mutex mtx;
-	SINGELTON();
+	SINGELTON() = default;
 public:
-	static * create_instance();
+	static * SINGELTON create_instance();
 	
 };
 #endif
