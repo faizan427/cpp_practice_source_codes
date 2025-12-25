@@ -7,8 +7,10 @@ simple_examples/*.o
 simple_examples/*.pdf
 S.O.L.I.D/*.o
 S.O.L.I.D/*.out
-Design_Patterns/*.o
-Design_Patterns/*.out
+Design_Patterns/SINGELTON_DP/*.o
+Design_Patterns/SINGELTON_DP/*.out
+Design_Patterns/BUILDER_DP/*.out
+Design_Patterns/BUILDER_DP/*.o
 # You can also ignore all .out files if needed
 # *.md
 
