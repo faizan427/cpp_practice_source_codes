@@ -24,7 +24,7 @@ public:
 }
 	toy_box_builder * add_gift_wrap(bool gift_wrap)
 {
-	my_custom_box->gift_wrap = gift_wrapl
+	my_custom_box->gift_wrapped = gift_wrap;
 	return this;
 }
 	toy_box * build()
