@@ -5,7 +5,7 @@
 using namespace std;
 class toy_box
 {
-private:
+public:
 	string car = "";
 	string doll = "";
 	bool stickers = false;
