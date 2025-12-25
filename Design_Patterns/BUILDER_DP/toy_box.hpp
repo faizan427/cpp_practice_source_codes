@@ -12,14 +12,14 @@ public:
 	bool gift_wrapped = false;
 	void show()
 {
-	cout << "Toy Box contains" << car << " car and " << doll << " doll " << endl;
+	cout << "Toy Box contains " << car << " car and " << doll << " doll " << endl;
 	if(stickers)
 {
-	cout << "\n Toy Box has stickers included\n";
+	cout << "Toy Box has stickers included" << endl;
 }
 	if(gift_wrapped)
 {
-	cout << "\n Toy Box is gift wrapped as well\n";
+	cout << "Toy Box is gift wrapped as well\n---------------------------------------\n";
 }
 }
 };
