@@ -20,7 +20,7 @@ public:
 class doll: public toy
 {
 public:	
-	doll = default;
+	doll() = default;
 	void play() override
 {
 	cout << "Play with DOLL" << endl;
