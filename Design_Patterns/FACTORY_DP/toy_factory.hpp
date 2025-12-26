@@ -20,6 +20,7 @@ public:
 	toy * make_toy() override
 {
 	cout << "CAR is ready" << endl;
+	return new car;
 }
 };
 class doll_factory: public toy_factory
@@ -32,6 +33,7 @@ public:
 	toy * make_toy() override
 {
 	cout << "DOLL is ready" << endl;
+	return new doll;
 }
 };
 #endif
