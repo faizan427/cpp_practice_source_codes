@@ -8,8 +8,8 @@ public:
 class lamp: public observer
 {
 public:
-	void update()
+	void update() override
 {
-	cout << "Lamp is turned ON" << endl;
+	cout << "OBSERVERLamp is turned ON" << endl;
 }
 };
