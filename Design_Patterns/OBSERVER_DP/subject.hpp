@@ -1,13 +1,15 @@
+#ifndef SUBJECT_HPP
+#define SUBJECT_HPP
 #include "observer.hpp"
 class subject
 {
 public:
-	virtual void add_observer(observer &obser) = 0;
+	virtual void add_observer(observer *obser) = 0;
 	virtual void notify_observer() = 0;
 
 };
 
-class switch : public subject
+class room_switch : public subject
 {
 public:
 	observer *obs;
@@ -28,3 +30,4 @@ public:
 	notify_observer();
 }
 };
+#endif

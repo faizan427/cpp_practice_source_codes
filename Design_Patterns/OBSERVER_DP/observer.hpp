@@ -1,16 +1,28 @@
+#ifndef OBSERVER_HPP
+#define OBSERVER_HPP
+
 #include <iostream>
 using namespace std;
 class observer
 {
 public:
 	bool status = false;
-	virual void update(bool status) = 0; 
+	virtual void update() = 0; 
 };
 class lamp: public observer
 {
 public:
 	void update() override
 {
-	cout << "OBSERVER: Lamp is turned " << status << endl;
+	if(status == 1)
+{
+	cout << "OBSERVER: Lamp is turned ON"  << endl;
+}
+	else
+{
+	cout << "OBSERVER: Lamp is turned OFF"  << endl;
+	
+}
 }
 };
+#endif
