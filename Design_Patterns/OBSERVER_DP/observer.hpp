@@ -3,13 +3,13 @@ using namespace std;
 class observer
 {
 public:
-	virual void update() = 0; 
+	virual void update(bool status) = 0; 
 };
 class lamp: public observer
 {
 public:
-	void update() override
+	void update(bool status) override
 {
-	cout << "OBSERVERLamp is turned ON" << endl;
+	cout << "OBSERVERLamp is turned " << status << endl;
 }
 };
