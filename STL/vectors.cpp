@@ -95,3 +95,23 @@ int main()
     at()   → Bounds checking (safe, slower)
     */
 
+  // Iteration
+    cout << "Vector elements: ";
+    for (int x : v)
+        cout << x << " ";
+    cout << endl;
+
+    /*
+    erase() complexity:
+    - erase(begin() + i) → O(n)
+    because elements must be shifted
+    */
+
+    // Remove element at index 1
+    v.erase(v.begin() + 1);
+
+    cout << "After erase index 1: ";
+    for (int x : v)
+        cout << x << " ";
+    cout << endl;
+
