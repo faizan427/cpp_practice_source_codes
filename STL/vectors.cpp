@@ -115,3 +115,18 @@ int main()
         cout << x << " ";
     cout << endl;
 
+ /*
+    reserve():
+    - Pre-allocates memory
+    - Avoids repeated reallocations
+    - VERY IMPORTANT for performance
+    */
+
+    vector<int> fast;
+    fast.reserve(1000); // prevents multiple reallocations
+
+    for (int i = 0; i < 1000; i++)
+        fast.push_back(i);
+
+    return 0;
+}
