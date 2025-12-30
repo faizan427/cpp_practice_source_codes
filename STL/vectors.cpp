@@ -77,3 +77,21 @@ int main()
         cout << "Size: " << v.size()
              << ", Capacity: " << v.capacity() << endl;
     }
+  /*
+    Output analysis:
+    - Capacity grows in chunks
+    - Size grows linearly
+    */
+
+    // Random access: O(1)
+    cout << "v[2] = " << v[2] << endl;
+
+    // Safe access
+    cout << "v.at(2) = " << v.at(2) << endl;
+
+    /*
+    Difference:
+    v[ ]   → No bounds checking (fast, unsafe)
+    at()   → Bounds checking (safe, slower)
+    */
+
