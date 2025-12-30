@@ -7,60 +7,61 @@ using namespace std;
             std::vector — THEORY
 =========================================
 
-1️⃣ What is std::vector?
+1) What is std::vector?
 -----------------------------------------
 - A dynamic array
-- Stores elements in CONTIGUOUS memory
-- Supports random access (O(1))
+- Stores elements in contiguous memory
+- Supports random access in O(1)
 - Automatically resizes when capacity is exceeded
 
 Think of it as:
     "array + automatic resizing + STL features"
 
-2️⃣ Memory Layout
+2) Memory Layout
 -----------------------------------------
 - Elements are stored back-to-back in memory
 - This gives:
-    ✔ Fast iteration
-    ✔ Cache friendliness
-    ✔ O(1) access via index
+    - Fast iteration
+    - Cache friendliness
+    - O(1) access via index
 
 But:
-    ❌ Insert/erase in middle is expensive (O(n))
+    - Insert or erase in the middle is expensive (O(n))
 
-3️⃣ size() vs capacity()
+3) size() vs capacity()
 -----------------------------------------
-size()     → number of elements currently stored
-capacity() → total memory allocated
+size()     -> number of elements currently stored
+capacity() -> total memory allocated
 
-vector grows typically by:
+vector usually grows as:
     capacity *= 2   (implementation dependent)
 
 This is why push_back() is:
-    ✔ Amortized O(1)
-    ❌ Worst-case O(n)
+    - Amortized O(1)
+    - Worst-case O(n)
 
-4️⃣ When DOES vector reallocate?
+4) When does vector reallocate?
 -----------------------------------------
 If size() == capacity():
     - New larger memory is allocated
-    - Old elements are copied/moved
+    - Old elements are copied or moved
     - Old memory is freed
 
-⚠️ This INVALIDATES:
+This invalidates:
     - pointers
     - references
     - iterators
 
-5️⃣ When NOT to use vector?
+5) When NOT to use vector?
 -----------------------------------------
-- Frequent insert/delete at front or middle
+- Frequent insert or delete at front or middle
 - Need stable iterators after insertions
 
-Use list / deque instead.
+Use list or deque instead.
 
 =========================================
 */
+
 int main()
 {
     vector<int> v;
@@ -77,7 +78,8 @@ int main()
         cout << "Size: " << v.size()
              << ", Capacity: " << v.capacity() << endl;
     }
-  /*
+
+    /*
     Output analysis:
     - Capacity grows in chunks
     - Size grows linearly
@@ -91,11 +93,11 @@ int main()
 
     /*
     Difference:
-    v[ ]   → No bounds checking (fast, unsafe)
-    at()   → Bounds checking (safe, slower)
+    v[]  -> No bounds checking (fast, unsafe)
+    at() -> Bounds checking (safe, slightly slower)
     */
 
-  // Iteration
+    // Iteration
     cout << "Vector elements: ";
     for (int x : v)
         cout << x << " ";
@@ -103,7 +105,7 @@ int main()
 
     /*
     erase() complexity:
-    - erase(begin() + i) → O(n)
+    erase(begin() + i) -> O(n)
     because elements must be shifted
     */
 
@@ -115,11 +117,11 @@ int main()
         cout << x << " ";
     cout << endl;
 
- /*
+    /*
     reserve():
     - Pre-allocates memory
     - Avoids repeated reallocations
-    - VERY IMPORTANT for performance
+    - Important for performance
     */
 
     vector<int> fast;
@@ -130,3 +132,4 @@ int main()
 
     return 0;
 }
+
