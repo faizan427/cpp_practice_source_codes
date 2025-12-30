@@ -61,3 +61,19 @@ Use list / deque instead.
 
 =========================================
 */
+int main()
+{
+    vector<int> v;
+
+    // Initially empty
+    cout << "Size: " << v.size() << endl;
+    cout << "Capacity: " << v.capacity() << endl;
+
+    // push_back(): Amortized O(1)
+    for (int i = 1; i <= 5; i++)
+    {
+        v.push_back(i * 10);
+        cout << "After push_back(" << i * 10 << ") ";
+        cout << "Size: " << v.size()
+             << ", Capacity: " << v.capacity() << endl;
+    }
