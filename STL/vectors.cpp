@@ -3,74 +3,224 @@
 using namespace std;
 
 /*
-=========================================
-            std::vector — THEORY
-=========================================
+====================================================================
+                    std::vector — COMPLETE THEORY
+====================================================================
 
+--------------------------------------------------------------------
 1) What is std::vector?
------------------------------------------
-- A dynamic array
-- Stores elements in contiguous memory
-- Supports random access in O(1)
-- Automatically resizes when capacity is exceeded
+--------------------------------------------------------------------
+std::vector is a sequence container provided by the C++ Standard
+Template Library (STL).
 
-Think of it as:
-    "array + automatic resizing + STL features"
+Key definition:
+- It is a dynamic array that manages its own memory.
 
-2) Memory Layout
------------------------------------------
-- Elements are stored back-to-back in memory
-- This gives:
-    - Fast iteration
-    - Cache friendliness
-    - O(1) access via index
+Why it exists:
+- Traditional arrays have a fixed size.
+- std::vector solves this by growing and shrinking automatically.
 
-But:
-    - Insert or erase in the middle is expensive (O(n))
+How it works internally:
+- Allocates a contiguous block of memory on the heap.
+- Tracks three things internally:
+    1. pointer to beginning of memory
+    2. current size (number of elements)
+    3. current capacity (allocated slots)
 
+When to use:
+- When you need fast random access.
+- When data size can change at runtime.
+- When iteration speed matters.
+
+When NOT to use:
+- Frequent insertions/deletions in the middle.
+- When iterator/pointer stability is required.
+
+--------------------------------------------------------------------
+2) Contiguous Memory (VERY IMPORTANT)
+--------------------------------------------------------------------
+"Contiguous" means:
+- Elements are stored next to each other in memory.
+- Similar to C-style arrays.
+
+Why this matters:
+- v[0], v[1], v[2] are adjacent in RAM.
+- CPU caches work efficiently.
+- Iteration is extremely fast.
+
+Advantage:
+- Best cache locality among STL containers.
+
+Disadvantage:
+- If vector grows, memory must be reallocated.
+- Reallocation is expensive.
+
+--------------------------------------------------------------------
 3) size() vs capacity()
------------------------------------------
-size()     -> number of elements currently stored
-capacity() -> total memory allocated
+--------------------------------------------------------------------
+size():
+- Number of elements currently stored.
+- Logical size.
 
-vector usually grows as:
-    capacity *= 2   (implementation dependent)
+capacity():
+- Number of elements vector can hold
+  WITHOUT allocating more memory.
+- Physical size.
 
-This is why push_back() is:
-    - Amortized O(1)
-    - Worst-case O(n)
+Why separation exists:
+- To avoid allocating memory on every insertion.
+- Improves performance by reducing heap operations.
 
-4) When does vector reallocate?
------------------------------------------
-If size() == capacity():
-    - New larger memory is allocated
-    - Old elements are copied or moved
-    - Old memory is freed
+Example:
+If size = 5 and capacity = 8:
+- 5 elements are used
+- 3 slots are free
 
-This invalidates:
-    - pointers
-    - references
-    - iterators
+--------------------------------------------------------------------
+4) push_back() — Amortized Complexity
+--------------------------------------------------------------------
+push_back():
+- Adds element at the end of vector.
 
-5) When NOT to use vector?
------------------------------------------
-- Frequent insert or delete at front or middle
-- Need stable iterators after insertions
+Why amortized O(1):
+- Most insertions just place element in free slot.
+- Occasionally, vector reallocates.
 
-Use list or deque instead.
+Worst case:
+- O(n) when reallocation happens.
+- All existing elements are copied/moved.
 
-=========================================
+Amortized analysis:
+- Expensive operations are rare.
+- Average cost per insertion becomes constant.
+
+--------------------------------------------------------------------
+5) Reallocation — What REALLY happens
+--------------------------------------------------------------------
+Reallocation occurs when:
+    size == capacity
+
+Steps:
+1. Allocate a new block (usually 2x capacity).
+2. Copy or move all old elements.
+3. Destroy old elements.
+4. Free old memory.
+5. Update internal pointers.
+
+Why this is dangerous:
+- All pointers become invalid.
+- All references become invalid.
+- All iterators become invalid.
+
+This is a common source of bugs in interviews.
+
+--------------------------------------------------------------------
+6) reserve()
+--------------------------------------------------------------------
+reserve(n):
+- Allocates memory upfront.
+- Does NOT change size.
+- Prevents multiple reallocations.
+
+Why use it:
+- When input size is known.
+- Improves performance.
+- Prevents iterator invalidation.
+
+When NOT needed:
+- When vector size is small.
+- When size is unpredictable and small.
+
+--------------------------------------------------------------------
+7) operator[] vs at()
+--------------------------------------------------------------------
+operator[]:
+- Fast
+- No bounds checking
+- Undefined behavior if index is invalid
+
+at():
+- Performs bounds checking
+- Throws exception if out of range
+- Slightly slower
+
+Interview tip:
+- Use operator[] when performance matters
+- Use at() when safety matters
+
+--------------------------------------------------------------------
+8) erase()
+--------------------------------------------------------------------
+erase(pos):
+- Removes element at position.
+- Shifts all elements to the left.
+
+Why O(n):
+- Every element after pos must move.
+- Cost increases with vector size.
+
+Rule:
+- Avoid erase in loops if possible.
+- Use erase-remove idiom for conditions.
+
+--------------------------------------------------------------------
+9) Iteration
+--------------------------------------------------------------------
+Range-based for loop:
+- Clean
+- Safe
+- Preferred in modern C++
+
+Why fast:
+- Sequential memory access
+- Cache-friendly
+
+--------------------------------------------------------------------
+10) Advantages of std::vector
+--------------------------------------------------------------------
+- Fast random access
+- Cache-friendly
+- Easy to use
+- STL algorithm compatible
+- Minimal memory overhead
+- Best default container choice
+
+--------------------------------------------------------------------
+11) Disadvantages of std::vector
+--------------------------------------------------------------------
+- Expensive middle insertions
+- Expensive middle deletions
+- Iterator invalidation on reallocation
+- Not thread-safe
+- Requires contiguous memory block
+
+--------------------------------------------------------------------
+12) When to choose vector over others
+--------------------------------------------------------------------
+Choose vector if:
+- You need index-based access
+- You need fast iteration
+- Insertions are mostly at the end
+
+Choose deque if:
+- Frequent push/pop at both ends
+
+Choose list if:
+- Frequent insertions/deletions anywhere
+- Iterator stability is required
+
+====================================================================
 */
 
 int main()
 {
     vector<int> v;
 
-    // Initially empty
+    // Initially empty vector
     cout << "Size: " << v.size() << endl;
     cout << "Capacity: " << v.capacity() << endl;
 
-    // push_back(): Amortized O(1)
+    // Demonstrating push_back and capacity growth
     for (int i = 1; i <= 5; i++)
     {
         v.push_back(i * 10);
@@ -79,37 +229,19 @@ int main()
              << ", Capacity: " << v.capacity() << endl;
     }
 
-    /*
-    Output analysis:
-    - Capacity grows in chunks
-    - Size grows linearly
-    */
-
-    // Random access: O(1)
+    // Random access using operator[]
     cout << "v[2] = " << v[2] << endl;
 
-    // Safe access
+    // Safe access using at()
     cout << "v.at(2) = " << v.at(2) << endl;
 
-    /*
-    Difference:
-    v[]  -> No bounds checking (fast, unsafe)
-    at() -> Bounds checking (safe, slightly slower)
-    */
-
-    // Iteration
+    // Iteration over vector
     cout << "Vector elements: ";
     for (int x : v)
         cout << x << " ";
     cout << endl;
 
-    /*
-    erase() complexity:
-    erase(begin() + i) -> O(n)
-    because elements must be shifted
-    */
-
-    // Remove element at index 1
+    // Erasing element at index 1
     v.erase(v.begin() + 1);
 
     cout << "After erase index 1: ";
@@ -117,19 +249,12 @@ int main()
         cout << x << " ";
     cout << endl;
 
-    /*
-    reserve():
-    - Pre-allocates memory
-    - Avoids repeated reallocations
-    - Important for performance
-    */
-
+    // Using reserve to improve performance
     vector<int> fast;
-    fast.reserve(1000); // prevents multiple reallocations
+    fast.reserve(1000);
 
     for (int i = 0; i < 1000; i++)
         fast.push_back(i);
 
     return 0;
 }
-
