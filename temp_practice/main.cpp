@@ -1,16 +1,14 @@
-#define i cin
-#define o cout
-#define PI 3.14
-
 #include <iostream>
 using namespace std;
-
+template <typename T>
+T max(T a, T b, T c)
+{
+	return a>b&&a>c?a:b>c?b:c;
+}
 int main()
 {
-int number;
-o << "enter number" << endl;
-i >> number;
-o << "number = " << number << " PI= " << PI << endl; 
-
+cout << max(3,4,5) << " " << max(3.14,3.04,3.004) << endl;
 return 0;
+
 }
+
