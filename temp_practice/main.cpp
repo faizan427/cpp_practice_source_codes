@@ -1,19 +1,19 @@
 #include <iostream>
 using namespace std;
-class demo
+int max (int a, int b)
 {
-public:
-explicit	demo(int a)
-{
-cout << a << endl;
+	return a>b?a:b;
 }
-
-
-};
+int min(int a, int b)
+{
+	return a<b?a:b;
+}
 int main()
 {
-demo D(2);
-
-
+int (*fptr)(int, int);
+fptr = max;
+cout << "Max = " << (*fptr)(2,3) << endl; 
+fptr = min;
+cout << "Min = " << (*fptr)(2,3) << endl;
 return 0;
 }
