@@ -1,26 +1,25 @@
 #include <iostream>
+#include <memory>
 using namespace std;
-void func(int a , int b)
+class demo
 {
-if(b==0)
+public:	
+	demo()
 {
-	throw 404;
+	cout << "demo object created\n";
 }
-else
+	~demo()
 {
-	cout << "Division = "  << a/b << endl;
+	cout << "destroyed\n";
 }
-}
+};
 int main()
 {
-try 
-{
-	func(8,0);
-}
-catch(int e)
-{
-	cout << "Error " << e << "found" << endl;
-}
+demo *d = new demo();
+cout << d << endl;
+
+unique_ptr<demo> D(std::move(d));
+	cout << d << endl;
 
 return 0;
 }
