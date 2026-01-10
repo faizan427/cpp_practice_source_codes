@@ -1,35 +1,34 @@
 #include <iostream>
 using namespace std;
-class complex
+class complex 
 {
 private:
-	int real, imag;
+	  int real;
+	   int imag;
 public:
-	complex()= default;
-	void make(int a , int b)
-{
-	this->real = a;
-	this->imag = b;
-
-}
-	friend void show(complex const &num);
-	complex(complex &num)
-{
-	cout << "copy constr\n";
-	this->real = num.real;
-	this->imag =num.imag;
-}
+	complex()=default;
+	friend istream & operator>> (istream &i, complex &num);
+	friend void show(complex &num);
 };
-void show(complex const &num)
+
+istream & operator>> (istream &i, complex &number)
 {
-	cout << num.real<< " +i" << num.imag << endl;
+	cout << "Enter real part\n";
+	i >> number.real;
+	cout << "Enter imaginery part\n";
+	i >> number.imag;
+	cout << "Complex number is generated\n";
+	return i;
+}
+void show(complex &num)
+{
+	cout << num.real << " +i" << num.imag << endl;
 }
 int main()
 {
 complex num_1;
-num_1.make(2,3);
-complex num_2(num_1);
-show(num_2);
+cin >> num_1;
+show(num_1);
 
 return 0;
 }
