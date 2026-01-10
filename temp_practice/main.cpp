@@ -1,10 +1,15 @@
 #include <iostream>
 using namespace std;
 enum numbers{ one =1, ten =10};
-enum colors { one , two};
+enum colors { blue =1 , red =2};
 int main()
 {
-cout << number::one << endl;
+numbers n;
+n  = one ;
+colors hello;
+hello = blue;
+int p = one; 
+cout << p <<  hello << endl;
 
 
 return 0;
