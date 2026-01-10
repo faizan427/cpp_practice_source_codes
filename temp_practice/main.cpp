@@ -1,12 +1,11 @@
 #include <iostream>
 using namespace std;
-int x =2;
-void func() const
-{
-	::x++; 
-}
+enum numbers{ one =1, ten =10};
+enum colors { one , two};
 int main()
 {
+cout << number::one << endl;
+
 
 return 0;
 }
