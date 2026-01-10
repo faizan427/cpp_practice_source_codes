@@ -3,32 +3,40 @@ using namespace std;
 class complex 
 {
 private:
-	  int real;
-	   int imag;
+	int real,imag;
 public:
-	complex()=default;
-	friend istream & operator>> (istream &i, complex &num);
-	friend void show(complex &num);
-};
+	complex() =default;
+	complex(int a , int b)
+{
+	this->real = a;
+	this->imag = b;
+}
+	void show()
+{
+	cout << this->real << " +i" << this ->imag << endl;
+}
+	complex(complex &&num) noexcept
+{
+	cout << "move called\n";
+	this->real =num.real;
+	this->imag = num.imag;
+	num.real =0;
+	num.imag =0;
+	
+}
 
-istream & operator>> (istream &i, complex &number)
-{
-	cout << "Enter real part\n";
-	i >> number.real;
-	cout << "Enter imaginery part\n";
-	i >> number.imag;
-	cout << "Complex number is generated\n";
-	return i;
-}
-void show(complex &num)
-{
-	cout << num.real << " +i" << num.imag << endl;
-}
+
+};
 int main()
 {
-complex num_1;
-cin >> num_1;
-show(num_1);
+complex num_1(3,2);
+num_1.show();
+
+complex num_2(std::move(num_1));
+
+num_2.show();
+num_1.show();
+
 
 return 0;
 }
