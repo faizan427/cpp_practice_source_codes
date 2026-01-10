@@ -1,25 +1,38 @@
 #include <iostream>
 using namespace std;
-namespace one 
+class complex
 {
-void func()
+private:
+	int real, imag;
+public:
+	complex()=default;
+	void make_number(int a, int b)
 {
-	cout << "from one" << endl;
+	this->real= a;
+	this->imag = b;
 }
-}
-namespace two
+	friend void show_number(complex &number);
+	complex operator + (complex &obj)
 {
-void func()
+	complex temp;
+	temp.real = this->real + obj.real;
+	temp.imag = this->imag + obj.imag;
+	return temp;
+}
+};
+void show_number(complex &number)
 {
-	cout << "from two" << endl;
+	cout << number.real << " +i" << number.imag << endl;
 }
-
-}
-
 int main()
 {
-one::func();
-two::func();
+complex num_1,num_2;
+num_1.make_number(2,3);
+num_2.make_number(3,2);
+complex num_3;
+num_3 = num_1+num_2;
+show_number(num_3);
+
 
 return 0;
 }
