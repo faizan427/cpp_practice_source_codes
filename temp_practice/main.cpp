@@ -1,16 +1,25 @@
 #include <iostream>
 using namespace std;
-enum numbers{ one =1, ten =10};
-enum colors { blue =1 , red =2};
+namespace one 
+{
+void func()
+{
+	cout << "from one" << endl;
+}
+}
+namespace two
+{
+void func()
+{
+	cout << "from two" << endl;
+}
+
+}
+
 int main()
 {
-numbers n;
-n  = one ;
-colors hello;
-hello = blue;
-int p = one; 
-cout << p <<  hello << endl;
-
+one::func();
+two::func();
 
 return 0;
 }
