@@ -1,42 +1,18 @@
 #include <iostream>
 using namespace std;
-class complex 
+void func_1(int &a , int &b)
 {
-private:
-	int real,imag;
-public:
-	complex() =default;
-	complex(int a , int b)
-{
-	this->real = a;
-	this->imag = b;
+	cout << "l valued called " << a+b << endl;
 }
-	void show()
+void func_2(int &&a, int &&b)
 {
-	cout << this->real << " +i" << this ->imag << endl;
+	cout << "r valued called " << a+b << endl;
 }
-	complex(complex &&num) noexcept
-{
-	cout << "move called\n";
-	this->real =num.real;
-	this->imag = num.imag;
-	num.real =0;
-	num.imag =0;
-	
-}
-
-
-};
 int main()
 {
-complex num_1(3,2);
-num_1.show();
-
-complex num_2(std::move(num_1));
-
-num_2.show();
-num_1.show();
-
+int a =2, b=3;
+func_1(2,3);
+func_2(2,4);
 
 return 0;
 }
