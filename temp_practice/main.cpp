@@ -33,6 +33,9 @@ public:
 	this->val = obj.val;
 	this->ptr = new int (val);
 } 
+template <typename T>
+friend void show(T &obj);
+
 	~deep()
 {
 	delete ptr;
@@ -49,5 +52,9 @@ shallow one(5);
 show<shallow>(one);
 shallow two(one);
 show<shallow>(two);
+deep three (3);
+show<deep>(three);
+deep four(three);
+show<deep>(four);
 return 0;
 }
