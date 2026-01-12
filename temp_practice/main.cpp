@@ -12,10 +12,9 @@ public:
 }
 template <typename T>
 friend void show(T &obj);
-//	~shallow()
-//{
-//	delete ptr;
-//}
+	~shallow()
+{	delete ptr;
+}
 };
 class deep
 {
