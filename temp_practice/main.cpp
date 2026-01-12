@@ -1,13 +1,29 @@
 #include <iostream>
 using namespace std;
-enum class numbers{one =1, two =2};
-enum class colors{one =1, two=2};
+class shallow
+{
+private:
+	int val;
+	int *ptr;
+public:
+	shallow(int val): val(val)
+{
+	ptr = new int (val);
+}
+template <typename T>
+friend void show(T &obj);
+	~shallow()
+{
+	delete ptr;
+}
+};
+template <typename T>
+void show( T &obj)
+{
+	cout << "ptr address = " <<obj.ptr << "  and value = "<<*(obj.ptr) << endl;
+}
 int main()
 {
-colors C;
-C= colors::two;
-int x = (int)C;
-cout << x << endl;
 
 
 return 0;
