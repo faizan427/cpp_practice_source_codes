@@ -2,14 +2,11 @@
 using namespace std;
 int main()
 {
-int a = 12;
-switch(a)
+char arr[5]={'H','E','L','L','O'};
+for(auto i: arr)
 {
-case 1: "cout << no number\n";
-break;
-default:cout << a << endl;
-break; 
-	
+cout << i ;
 }
+
 return 0;
 }
