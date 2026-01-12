@@ -12,7 +12,28 @@ public:
 }
 template <typename T>
 friend void show(T &obj);
-	~shallow()
+//	~shallow()
+//{
+//	delete ptr;
+//}
+};
+class deep
+{
+private:
+	int val;
+	int *ptr;
+public:
+	deep(int val):val(val)
+{
+	ptr = new int (val);
+}
+	deep(deep & obj)
+{
+	cout << "deep copy invoked\n";
+	this->val = obj.val;
+	this->ptr = new int (val);
+} 
+	~deep()
 {
 	delete ptr;
 }
@@ -24,7 +45,9 @@ void show( T &obj)
 }
 int main()
 {
-
-
+shallow one(5);
+show<shallow>(one);
+shallow two(one);
+show<shallow>(two);
 return 0;
 }
