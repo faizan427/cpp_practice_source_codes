@@ -2,12 +2,14 @@
 using namespace std;
 int main()
 {
-int *ptr = new int(5);
-ptr = nullptr;
-if(ptr != nullptr && *ptr !=0 )
+int a = 12;
+switch(a)
 {
-	cout << "second statement did not execute" << endl;
+case 1: "cout << no number\n";
+break;
+default:cout << a << endl;
+break; 
+	
 }
-
 return 0;
 }
