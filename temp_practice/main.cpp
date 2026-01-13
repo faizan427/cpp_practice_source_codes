@@ -6,11 +6,14 @@ mutex m;
 int amount =0;
 void add_money()
 {
-	m.lock();
-	cout << this_thread::id() << endl;	
+for(int i =1; i <=8 ; i++)
+	{
+	m.try_lock();
+	cout << std::this_thread::get_id() << endl;	
 	amount++;
 	
 	m.unlock();
+}
 }
 
 int main()
