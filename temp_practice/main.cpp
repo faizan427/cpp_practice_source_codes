@@ -7,7 +7,7 @@ int amount =0;
 void add_money()
 {
 	m.lock();
-	
+	cout << id << endl;	
 	amount++;
 	
 	m.unlock();
