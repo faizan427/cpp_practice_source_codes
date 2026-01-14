@@ -1,55 +1,36 @@
 #include <iostream>
-using namespace std;
-class toy
-{
-public:
-	virtual void play() =0;
-};
-class car: public toy
-{
-public:
-	void play()override
-{
-	cout << "play with car" << endl;
-}
-};
-class doll: public toy
-{
-public:
-	void play() override
-{
-	cout << "play with doll"  << endl;
-}
-};
-class factory
-{
-public:
-	virtual toy * make_toy() =0;
-};
-class car_factory: public factory
-{
-public:
-	toy * make_toy() override
-{
-	cout << "car ready" << endl;
-	return new car();
-}
-};
-class doll_factory:public factory
-{
-public:
-	toy * make_toy() override 
-{
-	cout << "doll ready " << endl;
-	return new doll;
-}
-};
-int main()
-{
-factory *audi_factory = new car_factory;
-toy *audi_car = new car;
-audi_car = audi_factory->make_toy();
-audi_car->play(); 
+#include <string>
+#include <vector>
+#include <sstream>
 
-return 0;
+using namespace std;
+
+int main() {
+    string str = "Hello my name is Faizan";
+    stringstream ss(str);
+    string word;
+    vector<string> words;
+
+    // 1. Store words in a vector
+    while (ss >> word) {
+        words.push_back(word);
+    }
+
+    int n = words.size();
+    bool isPalindrome = true;
+
+    cout << "Reversed: ";
+    for (int i = n - 1; i >= 0; i--) {
+        // 2. Small Change: Compare current word with its opposite partner
+        if (words[i] != words[n - 1 - i]) {
+            isPalindrome = false;
+        }
+        
+        cout << words[i] << (i == 0 ? "" : " ");
+    }
+
+    // 3. Output result
+    cout << "\nIs Word-Palindrome: " << (isPalindrome ? "Yes" : "No") << endl;
+
+    return 0;
 }
