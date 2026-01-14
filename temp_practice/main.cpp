@@ -4,24 +4,18 @@ class demo
 {
 public:
 	int var;
-	demo()=default;
-	demo(int var):var(var){} 
-	bool operator > (int val)
+	demo() =default;
+	demo(int var):var(var){}
+	bool operator == (int val)
 {
-	if(this->var > val)
-{
-	return true;
-}
-	else
-{
-	return false;
-} 
+	return this->var == val;
 }
 };
 int main()
 {
-demo a(1), b(2);
-cout << boolalpha <<(a>2);
+demo s(2), k(2);
+cout << boolalpha << (s==2) << endl;
+
 
 return 0;
 }
