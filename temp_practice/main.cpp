@@ -3,22 +3,25 @@ using namespace std;
 class demo
 {
 public:
-	int a;
-	demo() = default;
-	demo(int a): a(a){}
-	demo & operator  = (demo &obj)
+	int var;
+	demo()=default;
+	demo(int var):var(var){} 
+	bool operator > (int val)
 {
-	this->a = obj.a;
-	return *this;
+	if(this->var > val)
+{
+	return true;
+}
+	else
+{
+	return false;
+} 
 }
 };
 int main()
 {
-demo d(3);
-demo c, e;
-c = e= d;
-cout << c.a << " " << e.a << endl;
-
+demo a(1), b(2);
+cout << boolalpha <<(a>2);
 
 return 0;
 }
