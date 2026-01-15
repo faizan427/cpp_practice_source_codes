@@ -13,12 +13,13 @@ public:
 }
 	bool operator < (int val)
 {
-	return this->a < val;
+	return  this->a < val;
 }
 };
 int main()
 {
-
-
+area main_land(15);
+cout << "(main_land > 20) = " << boolalpha << (main_land > 20) << endl;
+cout << "(main_land < 18 ) = " << boolalpha << (main_land < 18) << endl;
 return 0;
 }
