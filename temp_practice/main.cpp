@@ -1,21 +1,14 @@
-#include <iostream>
+'#include <iostream>
+#include <vector>
 using namespace std;
-class demo
-{
-public:
-	int var;
-	demo() =default;
-	demo(int var):var(var){}
-	bool operator == (int val)
-{
-	return this->var == val;
-}
-};
 int main()
 {
-demo s(2), k(2);
-cout << boolalpha << (s==2) << endl;
-
-
+vector<pair<int,double>>v= {{1,100},{2,106},{3,104},{4,96},{5,101},{6,94}};
+int sum=0; 
+for(int i=1; i <=3; i++)
+{
+sum+=v[i].second;
+}
+cout << sum/3 << endl;
 return 0;
 }
