@@ -1,26 +1,20 @@
 #include <iostream>
 using namespace std;
-int func(int a , int b) noexcept
+class ptr 
 {
-	if(b==0)
+public:
+	int *pt = nullptr;
+	ptr() = default;
+	ptr(int *pt):pt(pt)
 {
-	throw 404;
+	cout << "pt = " << pt <<endl;
 }
-	else 
-{
-	return a%b;
-}
-}
+};
 int main()
 {
-try 
-{
-	int z = func(4,0);	
-}
-catch(int e)
-{
-	cout << e << endl;
-}
+ptr p = new int(5);
+unique_ptr<int> p1(std::move(p.pt));
+cout << p.pt << endl;
 
 return 0;
 }
