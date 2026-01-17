@@ -1,17 +1,23 @@
 #include <iostream>
 using namespace std;
-int max(int &&a, int &&b)
+class empty_
 {
-	return a>b?a:b;
-}
-int min(int a, int b)
+
+};
+class with_virtual_function
 {
-	return a<b?a:b;
-}
+	virtual void func()=0;
+
+	char i ;
+	int z;
+
+	char x;
+};
+class derived : with_virtual_function{};
 int main()
 {
-int (*fptr)(&&int,&&int);
-fptr = max;
-cout << (*fptr)(2,3) << endl;
+cout << "empty " << sizeof(empty_) << endl;
+cout << "with_virtual_function " << sizeof(with_virtual_function) << endl;
+cout << "derived " << sizeof(derived) << endl;
 return 0;
 }
