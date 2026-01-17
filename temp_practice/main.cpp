@@ -1,17 +1,26 @@
 #include <iostream>
 using namespace std;
-class A
+int func(int a , int b) noexcept
 {
-public:
-	int var =10;
-};
-class B: virtual public A{};
-class C: virtual public A{};
-class D: public B, public C{};
+	if(b==0)
+{
+	throw 404;
+}
+	else 
+{
+	return a%b;
+}
+}
 int main()
 {
-D d;
-cout << d.var << endl; 
-return 0;
+try 
+{
+	int z = func(4,0);	
+}
+catch(int e)
+{
+	cout << e << endl;
 }
 
+return 0;
+}
