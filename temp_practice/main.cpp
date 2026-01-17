@@ -1,20 +1,18 @@
 #include <iostream>
 using namespace std;
-#include <unistd.h>
-int * func(int *&ptr)
+class demo
 {
-	ptr = nullptr;
-	return ptr;
+public:
+mutable int x=1;
+	void func() const
+{
+	cout << x++;	
 }
+};
 int main()
 {
-int *ptr = new int(5);
-cout << "ptr = " << ptr << " value = " << *ptr << endl;
-
-cout << "func(ptr) = " << func(ptr) << endl; 
-sleep(3);
-cout <<" value = " << *ptr << endl;
-
+demo d;
+d.func();
 
 return 0;
 }
