@@ -1,23 +1,20 @@
 #include <iostream>
 using namespace std;
-class base
+#include <unistd.h>
+int * func(int *&ptr)
 {
-public:
-	int i ;
-	base(int i):i(i)
-{
-	cout << "base constructor called" << endl;
+	ptr = nullptr;
+	return ptr;
 }
-};
-class derived: public base
-{
-public:
-	int x;
-	derived(int x, int v): x(x), base(v){}
-};
 int main()
 {
-derived d(2,3);
+int *ptr = new int(5);
+cout << "ptr = " << ptr << " value = " << *ptr << endl;
+
+cout << "func(ptr) = " << func(ptr) << endl; 
+sleep(3);
+cout <<" value = " << *ptr << endl;
+
 
 return 0;
 }
