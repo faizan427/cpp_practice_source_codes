@@ -1,20 +1,17 @@
 #include <iostream>
 using namespace std;
-class ptr 
+int max(int &&a, int &&b)
 {
-public:
-	int *pt = nullptr;
-	ptr() = default;
-	ptr(int *pt):pt(pt)
-{
-	cout << "pt = " << pt <<endl;
+	return a>b?a:b;
 }
-};
+int min(int a, int b)
+{
+	return a<b?a:b;
+}
 int main()
 {
-ptr p = new int(5);
-unique_ptr<int> p1(std::move(p.pt));
-cout << p.pt << endl;
-
+int (*fptr)(&&int,&&int);
+fptr = max;
+cout << (*fptr)(2,3) << endl;
 return 0;
 }
