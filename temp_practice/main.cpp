@@ -1,32 +1,31 @@
 #include <iostream>
 using namespace std;
-class complex
+class demo
 {
 private:
-	int a,b;
+	int *ptr ;
 public:
-	complex() = default;
-friend istream & operator >> (istream &i, complex &obj);
-friend ostream & operator << (ostream &o, complex &obj);
-};
-istream & operator >> (istream &i, complex &obj)
+	demo(int *ptr): ptr(ptr){}
+	demo(demo &&obj) noexcept
 {
-	cout << "Enter numbers " << endl;
-	i >> obj.a;
-	i >> obj.b;
-	return i;
+	cout << "move called \n";
+	this->ptr = obj.ptr;
+	obj.ptr = nullptr;
 
 }
-ostream & operator << (ostream &o, complex &obj)
+friend void show(demo &obj);
+
+};
+void show(demo &obj)
 {
-	o << obj.a << " +i" << obj.b << endl;
-	return o;
+cout << "obj.ptr =\t" << obj.ptr << "\t*obj.ptr =\t" << *(obj.ptr) << endl; 
 }
 int main()
 {
-complex num_1;
-cin >> num_1;
-cout << num_1;
-
+demo D(new int(5));
+show(D); 
+demo E(std::move(D));
+show(E);
+show(D);
 return 0;
 }
