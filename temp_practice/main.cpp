@@ -10,9 +10,9 @@ public:
 {}
 	complex & operator = (complex &obj)
 {
-	obj.a = this->a;
-	obj.b = this->b;
-	return obj;
+	this->a = obj.a;
+	this->b = obj.b;
+	return *this;
 }
 friend void show(complex &obj);
 };
