@@ -1,23 +1,23 @@
 #include <iostream>
 using namespace std;
-class empty_
+class base
 {
-
-};
-class with_virtual_function
+public:
+	int i ;
+	base(int i):i(i)
 {
-	virtual void func()=0;
-
-	char i ;
-	int z;
-
-	char x;
+	cout << "base constructor called" << endl;
+}
 };
-class derived : with_virtual_function{};
+class derived: public base
+{
+public:
+	int x;
+	derived(int x, int v): x(x), base(v){}
+};
 int main()
 {
-cout << "empty " << sizeof(empty_) << endl;
-cout << "with_virtual_function " << sizeof(with_virtual_function) << endl;
-cout << "derived " << sizeof(derived) << endl;
+derived d(2,3);
+
 return 0;
 }
