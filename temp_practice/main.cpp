@@ -1,27 +1,33 @@
 #include <iostream>
 using namespace std;
-#include <thread>
-#include <chrono>
-using namespace chrono;
-#include <unistd.h>
-volatile bool val = true;
-void set_val()
+class base
 {
-	sleep(10);
-	val = false;
-}
-void run()
+public:
+	base()
 {
-	while(val)
+	cout << "base called\n";
+}
+virtual	~base()
 {
-	cout << "run " << boolalpha  <<val << endl;
+	cout << "base destroyed\n";
 }
+};
+class derived: public base
+{
+public:
+	derived()
+{
+	cout << "derived called\n";
 }
+	~derived()
+{
+	cout << "derived destroyed\n";
+}
+};
 int main()
 {
-thread t1(run);
-thread t2(set_val);
-t1.join();
-t2.join();
+base *b = new derived;
+delete b;
+
 return 0;
 }
