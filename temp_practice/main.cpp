@@ -1,22 +1,27 @@
 #include <iostream>
 using namespace std;
-template <typename T>
-class maxi
+#include <thread>
+#include <chrono>
+using namespace chrono;
+#include <unistd.h>
+volatile bool val = true;
+void set_val()
 {
-private:
-	static T a,b,c;
-
-	static T func(T &&a, T &&b, T &&c);
-};
-template <typename T>
-T maxi<T>::func(T &&a, T &&b, T &&c)
+	sleep(10);
+	val = false;
+}
+void run()
 {
-	return a>b&&a>c?a:b>c?b:c;
+	while(val)
+{
+	cout << "run " << boolalpha  <<val << endl;
+}
 }
 int main()
 {
-cout << maxi<int>::func(3,4,5) <<endl;
-cout << maxi<float>::func(3.4,4.4,1.5) <<endl;
-
+thread t1(run);
+thread t2(set_val);
+t1.join();
+t2.join();
 return 0;
 }
