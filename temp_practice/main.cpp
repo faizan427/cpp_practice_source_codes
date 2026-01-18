@@ -1,33 +1,40 @@
 #include <iostream>
 using namespace std;
-class base
+class area
 {
 public:
-	base()
+	int a;
+	area(int a):a(a)
+{}
+	bool operator > (area &obj)
 {
-	cout << "base called\n";
+	return this->a>obj.a;
 }
-virtual	~base()
+	bool operator < (area &obj)
 {
-	cout << "base destroyed\n";
+	return this->a<obj.a;
 }
+friend  	bool operator > (int val,area &obj);
+friend 		bool operator < (int val,area &obj);
+
+
 };
-class derived: public base
+ 	bool operator > (int val,area &obj)
 {
-public:
-	derived()
-{
-	cout << "derived called\n";
+	return val>obj.a;
 }
-	~derived()
+ 	bool operator < (int val,area &obj)
 {
-	cout << "derived destroyed\n";
+	return val< obj.a;
 }
-};
 int main()
 {
-base *b = new derived;
-delete b;
+area a(2), b(3);
+cout << "(a(2) > b(3)) "<< boolalpha <<(a > b) <<endl; 
+cout << "(a(2) < b(3)) "<< boolalpha <<(a < b) <<endl; 
+cout << "(4 < b(3)) "<< boolalpha <<(4 < b) <<endl;
+cout << "(6 > b(3)) "<< boolalpha <<(6 > b) <<endl; 
+ 
 
 return 0;
 }
