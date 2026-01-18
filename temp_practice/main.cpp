@@ -1,25 +1,20 @@
 #include <iostream>
-#include <string>
 using namespace std;
+template <typename T>
+class maxi
+{
+public:
+	static T a,b,c;
+	static T func(T &&a, T &&b, T &&c);
+};
+template <typename T>
+T maxi<T>::func(T &&a, T &&b, T &&c)
+{
+	return a>b&&a>c?a:b>c?b:c;
+}
 int main()
 {
-string str("");
-cin >> str;
-for(auto itr = str.begin(); itr < str.end(); itr++)
-{
-	if((*itr)>= 97 &&(*itr)<=122)
-{
-//	cout << (*itr)<<" " ;
-
-	(*itr)-=32;
-}
-	else
-{
-//	cout << (*itr)<<" " ;
-	(*itr)+=32;
-}
-}
-cout << str << endl;
+cout << maxi<int>::func(3,4,5) <<endl;
 
 return 0;
 }
