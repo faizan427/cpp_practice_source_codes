@@ -1,13 +1,25 @@
 #include <iostream>
+#include <string>
 using namespace std;
 int main()
 {
-int *ptr = new int(5);
-ptr = nullptr;
-if(ptr !=nullptr && (*ptr)>0)
+string str("");
+cin >> str;
+for(auto itr = str.begin(); itr < str.end(); itr++)
 {
-	cout << *ptr << endl;
+	if((*itr)>= 97 &&(*itr)<=122)
+{
+//	cout << (*itr)<<" " ;
+
+	(*itr)-=32;
 }
+	else
+{
+//	cout << (*itr)<<" " ;
+	(*itr)+=32;
+}
+}
+cout << str << endl;
 
 return 0;
 }
