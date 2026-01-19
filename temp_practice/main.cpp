@@ -43,6 +43,11 @@ public:
 };
 int main()
 {
+subject *corner_switch = new switch();
+observer *corner_light = new light;
+corner_switch->add_observer(corner_light);
+corner_switch->press_button(bool(true));
+corner_light->update();
 
 
 return 0;
