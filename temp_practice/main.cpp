@@ -1,37 +1,27 @@
 #include <iostream>
+#include <thread>
+#include <mutex>
 using namespace std;
-class worker
+condition_variable cv;
+mutex mtx;
+bool t1_turn = true;
+void add_money(int id)
 {
-public:
-	virtual void work()=0;
-	virtual void manage()=0;
-};
-class regular_worker : public worker
+for(int i =0; i < 3; i++)
 {
-public:
-	void worker () override
-{
-	cout << "regular is working" << endl;
+	unique_lock<mutex>lock(mtx);
+	cv.wait(lock,[id]{return (id ==1)? t1_turn:!t1_turn;});
+	cout << "Thread t " << id  << "increamented amount " << endl;
+	t1_turn = !t1_turn;
+	cv.notify_one();
 }
-	void manage() override
-{
-	cout << "regular worker is managing" << endl;
 }
-};
-class manager: public worker
-{
-public:
-	void worker() override
-{
-	cout << "manager is working" << endl;
-}
-	void manage () override
-{
-	cout << "manager is "
-}
-};
 int main()
 {
+thread t1(add_money, 1);
+thread t2(add_money, 2);
+t1.join();
+t2.join();
 
 
 return 0;
