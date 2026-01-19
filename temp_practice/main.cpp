@@ -1,40 +1,38 @@
 #include <iostream>
 using namespace std;
-class area
+class worker
 {
 public:
-	int a;
-	area(int a):a(a)
-{}
-	bool operator > (area &obj)
-{
-	return this->a>obj.a;
-}
-	bool operator < (area &obj)
-{
-	return this->a<obj.a;
-}
-friend  	bool operator > (int val,area &obj);
-friend 		bool operator < (int val,area &obj);
-
-
+	virtual void work()=0;
+	virtual void manage()=0;
 };
- 	bool operator > (int val,area &obj)
+class regular_worker : public worker
 {
-	return val>obj.a;
-}
- 	bool operator < (int val,area &obj)
+public:
+	void worker () override
 {
-	return val< obj.a;
+	cout << "regular is working" << endl;
 }
+	void manage() override
+{
+	cout << "regular worker is managing" << endl;
+}
+};
+class manager: public worker
+{
+public:
+	void worker() override
+{
+	cout << "manager is working" << endl;
+}
+	void manage () override
+{
+	cout << "manager is "
+}
+};
 int main()
 {
-area a(2), b(3);
-cout << "(a(2) > b(3)) "<< boolalpha <<(a > b) <<endl; 
-cout << "(a(2) < b(3)) "<< boolalpha <<(a < b) <<endl; 
-cout << "(4 < b(3)) "<< boolalpha <<(4 < b) <<endl;
-cout << "(6 > b(3)) "<< boolalpha <<(6 > b) <<endl; 
- 
+
 
 return 0;
 }
