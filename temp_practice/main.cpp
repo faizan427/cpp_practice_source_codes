@@ -7,8 +7,6 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-      , ui(new Ui::MainWindow)
-{
     ui->setupUi(this);
     QHBoxLayout *box_1 = new QHBoxLayout;
     QPushButton *button_1 = new QPushButton("Enter");
