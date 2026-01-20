@@ -1,5 +1,3 @@
-#include "mainwindow.h"
-#include "QVBoxLayout"
 #include "QDebug"
 #include "QString"
 
