@@ -1,4 +1,3 @@
-class observer
 {
 public:
 	string str{};
