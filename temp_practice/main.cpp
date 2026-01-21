@@ -1,4 +1,3 @@
-{
 public:
 	string str{};
 	virtual void update()=0;
