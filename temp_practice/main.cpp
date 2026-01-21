@@ -1,4 +1,3 @@
-	virtual void update()=0;
 };
 class light: public observer
 {
