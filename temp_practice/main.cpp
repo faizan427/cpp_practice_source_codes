@@ -1,5 +1,3 @@
-    /*
-    Based on the code you provided, here is a breakdown of the specific flaws causing your failures and segmentation faults.
 
 1. Garbage Values in Raw Pointer Allocation
 
