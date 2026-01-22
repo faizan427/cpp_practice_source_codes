@@ -1,6 +1,4 @@
 
-The Fix: Use new int[vis_size]() (with parentheses) or memset to zero out the memory.
-
 2. Memory Leak (No Deallocation)
 
 You are using new to allocate memory on the heap but never calling delete[].
