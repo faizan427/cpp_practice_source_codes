@@ -1,6 +1,4 @@
 
-The Flaw: When you perform vis[nums[i]]++, you are adding 1 to a random large number.
-
 The Fix: Use new int[vis_size]() (with parentheses) or memset to zero out the memory.
 
 2. Memory Leak (No Deallocation)
