@@ -1,5 +1,3 @@
-class Solution {
-public:
     /*
     Based on the code you provided, here is a breakdown of the specific flaws causing your failures and segmentation faults.
 
