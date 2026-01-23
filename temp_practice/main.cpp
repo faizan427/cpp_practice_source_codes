@@ -1,3 +1,17 @@
+class Solution {
+public:
+    /*
+    Based on the code you provided, here is a breakdown of the specific flaws causing your failures and segmentation faults.
+
+1. Garbage Values in Raw Pointer Allocation
+
+When you use int *vis = new int[vis_size];, C++ allocates the memory but does not initialize it to zero. It contains "garbage values" (random numbers left in RAM).
+
+The Flaw: When you perform vis[nums[i]]++, you are adding 1 to a random large number.
+
+The Fix: Use new int[vis_size]() (with parentheses) or memset to zero out the memory.
+
+2. Memory Leak (No Deallocation)
 
 You are using new to allocate memory on the heap but never calling delete[].
 
@@ -31,56 +45,51 @@ The Fix: Initialize it with the first element: int max_o_nums = nums[0];.
     */
     int mostFrequentElement(vector<int>& nums) 
     {
-        //////// step -i calculate the maximum nums vector//---1
-        // auto x = std::max_element(nums.begin(), nums.end());
-        // int max_o_nums =  (int) (*x);
-        int max_o_nums =0;
-        int nums_size = nums.size();
-        for(int i =0; i < nums_size; i++)
+     /////////////////////////////////////////////////////////////////--1
+    auto temp = std::max_element(nums.begin(), nums.end());
+    int max_o_nums = (int) (*temp);
+    // cout <<"max_o_nums " <<max_o_nums << endl;
+    // cout <<"nums.size() "<< nums.size()<< endl;
+    /////////////////////////////////////////////////////////////////--1
+    
+    /////////////////////////////////////////////////////////////////--2
+    vector<int> vis(max_o_nums+1,0);
+    /////////////////////////////////////////////////////////////////--2
+    
+    /////////////////////////////////////////////////////////////////--3
+  // cout <<"vis.size() "<< vis.size()<< endl;
+    for(int i =0; i < nums.size(); i++)
+    {
+        vis[nums[i]]++;
+    }
+    // for(int i =0; i <vis.size();i++)
+    // {
+    //     cout << vis[i] << " " ;
+    // }
+    // cout << endl;
+    //     for(int i =0; i <vis.size();i++)
+    // {
+    //     cout << i << " " ;
+    // }
+    // cout << endl;
+    int max_1 =0;
+    int max_2 =0;
+    int max_e_1 =0;
+    int max_e_2 =0;
+    for(int i =0; i= vis.size(); i++)
+    {
+        if(max_1 < vis[i])
         {
-            if(max_o_nums< nums[i])
-            {
-                max_o_nums = nums[i];
-            }
+            max_1 = vis[i];
+        //   cout << "max_1 = " << max_e_1 <<" max_2 = "<< max_e_2 << endl;
+            // max_2 = max_1;
+            // max_1 = vis[i];
+            // max_e_2 = max_e_1;
+            max_e_1 =i;
         }
-        //cout <<  max_o_nums  << endl;
-        //////// step -i calculate the maximum nums vector//----1
-
-
-        //////// declare a has vector with as size of max_o_nums//----2
-        int vis_size = max_o_nums+1;
-           
-        // vector<int> vis(vis_size,0);
-        int *vis = new int[vis_size]();
-        //////// declare a has vector with as size of max_o_nums//----2
-
-        //////// make a has vector                              //----3
-        for(int i =0; i < nums_size; i ++)
-        {
-            
-            vis[nums[i]]++;
-        }
-        //////// make a has vector                              //----3
-//    for(int i =0; i < vis_size; i ++)
-//         {
-//             cout << vis[i] << " " ;
-//         }
-        //////// find maximum value present inside vis[]'s index //----3
-        int temp =0;
-       
-        int max_f_n =0;
-        for(int i =0; i <vis_size; i++)
-        {
-            if(temp < vis[i])
-            {
-                temp = vis[i];
-                max_f_n = i;
-            }
-        }
-        //cout << endl <<max_f_n << endl;
-        //////// find maximum value present inside vis[]'s index //----3
-   // cout << endl;
-   delete []vis;
-    return max_f_n;
+    }
+   
+    /////////////////////////////////////////////////////////////////--3
+    return max_e_1;
     }
     
