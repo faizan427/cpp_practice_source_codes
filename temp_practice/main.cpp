@@ -1,7 +1,3 @@
-The Flaw: Every time the judge runs a test case, more of the server's RAM is consumed and never released. On Test Case 42, the judge likely runs out of memory and kills your program.
-
-The Fix: Add delete[] vis; before the return statement.
-
 3. Vulnerability to Negative Numbers
 
 Your logic assumes all numbers in nums are non-negative because you use the value of the number as an index: vis[nums[i]].
