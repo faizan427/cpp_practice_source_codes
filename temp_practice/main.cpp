@@ -1,8 +1,3 @@
-    /*
-    Based on the code you provided, here is a breakdown of the specific flaws causing your failures and segmentation faults.
-
-1. Garbage Values in Raw Pointer Allocation
-
 When you use int *vis = new int[vis_size];, C++ allocates the memory but does not initialize it to zero. It contains "garbage values" (random numbers left in RAM).
 
 The Flaw: When you perform vis[nums[i]]++, you are adding 1 to a random large number.
