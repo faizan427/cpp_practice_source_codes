@@ -1,9 +1,3 @@
-The Fix: Use new int[vis_size]() (with parentheses) or memset to zero out the memory.
-
-2. Memory Leak (No Deallocation)
-
-You are using new to allocate memory on the heap but never calling delete[].
-
 The Flaw: Every time the judge runs a test case, more of the server's RAM is consumed and never released. On Test Case 42, the judge likely runs out of memory and kills your program.
 
 The Fix: Add delete[] vis; before the return statement.
