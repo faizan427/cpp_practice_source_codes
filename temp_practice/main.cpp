@@ -1,6 +1,4 @@
 
-The Result: The new operator fails to find enough contiguous memory, causing the program to crash.
-
 5. Incorrect Initialization of max_o_nums
 
 You initialized int max_o_nums = 0;.
