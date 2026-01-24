@@ -1,5 +1,3 @@
-The Flaw: If nums[i] is -5, your code tries to access vis[-5], which is outside the array's memory. This is a guaranteed Segmentation Fault.
-
 The Fix: Use a hash map or add an offset to handle negative values.
 
 4. Memory Overflow with Large Values
