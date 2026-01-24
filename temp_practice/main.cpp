@@ -1,5 +1,3 @@
-The Fix: Use a hash map or add an offset to handle negative values.
-
 4. Memory Overflow with Large Values
 
 This is the most likely reason for failing "large test cases" in "Submit" mode.
