@@ -1,6 +1,4 @@
 
-The Flaw: If a test case contains the number 1,000,000,000, your code attempts to allocate an array of 1 billion integers ($ \approx 4\text{GB}$ of RAM). Most online judges have a limit of 256MB.
-
 The Result: The new operator fails to find enough contiguous memory, causing the program to crash.
 
 5. Incorrect Initialization of max_o_nums
