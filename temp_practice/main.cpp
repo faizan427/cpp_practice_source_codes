@@ -1,7 +1,3 @@
-3. Vulnerability to Negative Numbers
-
-Your logic assumes all numbers in nums are non-negative because you use the value of the number as an index: vis[nums[i]].
-
 The Flaw: If nums[i] is -5, your code tries to access vis[-5], which is outside the array's memory. This is a guaranteed Segmentation Fault.
 
 The Fix: Use a hash map or add an offset to handle negative values.
