@@ -1,6 +1,4 @@
 
-The Flaw: If the input nums contains only negative numbers (e.g., {-10, -20, -30}), your loop if(max_o_nums < nums[i]) will never trigger. max_o_nums will stay 0, and you will return 0 as the answer, which isn't even in the array.
-
 The Fix: Initialize it with the first element: int max_o_nums = nums[0];.
     */
     int mostFrequentElement(vector<int>& nums) 
