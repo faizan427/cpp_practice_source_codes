@@ -1,7 +1,4 @@
 
-The Fix: Initialize it with the first element: int max_o_nums = nums[0];.
-    */
-    int mostFrequentElement(vector<int>& nums) 
     {
      /////////////////////////////////////////////////////////////////--1
     auto temp = std::max_element(nums.begin(), nums.end());
