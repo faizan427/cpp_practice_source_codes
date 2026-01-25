@@ -1,6 +1,3 @@
-
-    {
-     /////////////////////////////////////////////////////////////////--1
     auto temp = std::max_element(nums.begin(), nums.end());
     int max_o_nums = (int) (*temp);
     // cout <<"max_o_nums " <<max_o_nums << endl;
