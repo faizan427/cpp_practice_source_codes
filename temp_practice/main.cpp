@@ -1,5 +1,3 @@
-    for(int i =0; i < nums.size(); i++)
-    {
         vis[nums[i]]++;
     }
     // for(int i =0; i <vis.size();i++)
