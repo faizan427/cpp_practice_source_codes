@@ -1,4 +1,3 @@
-    title: qsTr("Hello World")
   Rectangle
   {
     id:my_rect
