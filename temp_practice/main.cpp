@@ -1,5 +1,4 @@
-
-Window {
+xWindow {
     width: 600
     height: 400
     visible: true
