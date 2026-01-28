@@ -1,15 +1,64 @@
-  Rectangle
-  {
-    id:my_rect
-    anchors.centerIn: parent
-    width: parent.width/4
-    height: parent.height/4
-    radius: width/2
-    gradient: Gradient
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import com.company.test 1.0
+Window {
+    id:my_root
+    width: 600
+    height: 400
+    title: "main_window"
+    visible: true
+    color: "blue"
+    Best
     {
-        GradientStop{position: 0.4; color: "red"}
-        GradientStop{position: 0.1; color: "cyan"}
-        GradientStop{position: 0.5; color: "green"}
+        id: my_instance
     }
-  }
+    Column
+    {
+        anchors.centerIn: parent
+        Rectangle {
+            id: item_1
+            height: 65
+            width: 200
+
+
+        Text {
+            id: name_1
+            text: qsTr("Response")
+            anchors.centerIn: item_1
+        }
+        }
+   Rectangle
+   {
+    id: my_rect
+   // anchors.centerIn: parent
+    height: 65
+    width: 100
+    color: "gray"
+    x: 50
+    Component.onCompleted:
+    {
+    print("created")}
+
+    Text {
+        anchors.centerIn: parent
+        id: name
+        text: qsTr("Click me")
+
+
+    }
+    MouseArea
+    {
+        anchors.fill: parent
+        onClicked: name_1.text = my_instance.meow() ;
+    }
+   }
+   }
+
+
+
+
+
+
+
+
 }
