@@ -1,5 +1,3 @@
-    Column
-    {
         anchors.centerIn: parent
         Rectangle {
             id: item_1
