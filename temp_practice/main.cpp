@@ -1,5 +1,3 @@
-import com.company.test 1.0
-Window {
     id:my_root
     width: 600
     height: 400
