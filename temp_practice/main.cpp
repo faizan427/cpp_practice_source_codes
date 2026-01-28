@@ -1,5 +1,3 @@
-    id:my_root
-    width: 600
     height: 400
     title: "main_window"
     visible: true
