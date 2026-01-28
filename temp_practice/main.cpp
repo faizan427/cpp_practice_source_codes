@@ -1,5 +1,3 @@
-    height: 400
-    title: "main_window"
     visible: true
     color: "blue"
     Best
