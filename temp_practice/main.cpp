@@ -1,5 +1,3 @@
-        id: my_instance
-    }
     Column
     {
         anchors.centerIn: parent
