@@ -1,5 +1,3 @@
-    visible: true
-    color: "blue"
     Best
     {
         id: my_instance
