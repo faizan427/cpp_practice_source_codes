@@ -1,66 +1,55 @@
 #include <iostream>
-#include <thread>
-#include <mutex>
 using namespace std;
-class singelton
+class toy
 {
-private:
-	static mutex mtx;
-	static singelton *ptr;
-	singelton()
-{
-	cout << "instance is created " << endl;
-} 
 public:
-	static singelton * create_instance();
-	singelton(singelton &obj)
+	virtual void play()=0;
+};
+class car: public toy
 {
-	cout << "copy called" << endl;
+public:
+	void play() override
+{
+	cout << " play with car" << endl;
+}	
+};
+class doll: public toy
+{
+public:
+	void play() override
+{
+	cout << "play with doll" << endl;
 }
-	singelton & operator = (singelton &obj)
+};
+class toy_factory
 {
-	cout << "copy assingment called" << endl;
-	return *this;
-} 
-	singelton & operator = (singelton &&obj) noexcept
+public:
+	virtual toy *  create_toy() =0;
+};
+class car_factory: public toy_factory
 {
-	cout << "move assignemtn called" <<endl;
-		return *this;
-
+public:
+	toy * create_toy() override
+{
+	cout << "car created" << endl;
+	return new car;
 }
-	singelton(singelton &&obj) noexcept
+};
+class doll_factory: public toy_factory
 {
-
-	cout << "move assignemnet called" << endl;
+public:
+	toy * create_toy() override
+{
+	cout << "doll is created" << endl;
+	return new doll;
 }
 };
 
-singelton * singelton::ptr = nullptr;
-mutex singelton::mtx;
-singelton * singelton::create_instance()
-{
-	lock_guard<mutex> my_lock(mtx);
-	if(ptr == nullptr)
-{
-	ptr = new singelton;
-}
-	return ptr;
-}
-void func_1()
-{
-singelton * one_instance = singelton::create_instance();
 
-}
-void func_2()
-{
-singelton * two_instance = singelton::create_instance();
-
-}
 int main()
 {
-thread t1(func_1);
-thread t2(func_2);
-t1.join();
-t2.join();
+toy_factory *audi_factory = new car_factory();
+toy *audi = audi_factory->create_toy();
+audi->play();
 return 0;
 }
