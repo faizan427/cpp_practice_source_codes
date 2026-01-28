@@ -1,5 +1,3 @@
-    Best
-    {
         id: my_instance
     }
     Column
