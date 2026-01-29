@@ -1,21 +1,12 @@
 #include <iostream>
-#include <string>
 using namespace std;
 int main()
 {
-string str("HeLo");
-for(auto itr = str.begin(); itr!= str.end(); itr++)
+int *ptr = new int[5]();
+ptr = nullptr;
+if(ptr !=nullptr && *ptr == 5)
 {
-	cout << (*itr) << " " ;
-	if(*itr >= 97 && *itr <= 122)
-{
-	*itr= *itr-32;
+cout << "in " << endl;
 }
-	else
-{
-	*itr =*itr +32;
-}
-}
-cout << str << endl;
-return 0;
+
 }
