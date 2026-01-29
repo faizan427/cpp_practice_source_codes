@@ -1,27 +1,20 @@
 #include <iostream>
-#include <thread>
-#include <unistd.h>
 using namespace std;
-volatile bool val = true;
-void stop()
+union my_union
 {
-	val = false;
-}
-void run()
-{
-	while(val)
-{
-cout << "waiting" << endl;
-}
+	float z;
 
-}
+long long	int a;
+};
 int main()
 {
-thread t1(run);
-sleep(5);
-thread t2(stop);
-t1.join();
-t2.join();
+my_union x;
+
+x.z = 3;
+cout << sizeof(my_union) << endl;
+x.a =10;
+cout << sizeof(my_union) << endl;
+cout << x.z << endl;
 
 return 0;
 }
