@@ -1,55 +1,32 @@
 #include <iostream>
 using namespace std;
-class toy
+class area
 {
 public:
-	virtual void play()=0;
-};
-class car: public toy
+	int val =10;
+	area(int val):val(val){}
+friend	bool operator > (int val, area &obj);
+friend bool operator < (int val, area &obj);
+	bool operator > (area &obj)
 {
-public:
-	void play() override
+	return this->val > obj.val;
+}
+	bool operator < (area &obj)
 {
-	cout << " play with car" << endl;
-}	
-};
-class doll: public toy
-{
-public:
-	void play() override
-{
-	cout << "play with doll" << endl;
+	return this->val < obj.val;
 }
 };
-class toy_factory
+bool operator > (int val, area &obj)
 {
-public:
-	virtual toy *  create_toy() =0;
-};
-class car_factory: public toy_factory
-{
-public:
-	toy * create_toy() override
-{
-	cout << "car created" << endl;
-	return new car;
+	return val > obj.val;
 }
-};
-class doll_factory: public toy_factory
+bool operator < (int val, area &obj)
 {
-public:
-	toy * create_toy() override
-{
-	cout << "doll is created" << endl;
-	return new doll;
+	return val < obj.val;
 }
-};
-
-
 int main()
 {
-toy_factory *audi_factory = new car_factory();
-toy *audi = audi_factory->create_toy();
-audi->play();
+
+
 return 0;
 }
