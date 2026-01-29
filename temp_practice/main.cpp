@@ -1,21 +1,21 @@
 #include <iostream>
-#include <stdio.h>
+#include <string>
 using namespace std;
-template <typename T>
-class demo
-{
-public:
-	static T max(T a, T b, T c);
-};
-template <typename T>
-T demo<T>::max(T a, T b, T c)
-{
-	return a>b&&a>c?a:b>c?b:c;
-}
 int main()
 {
-cout << demo<int>::max(3,4,5) << endl;
-cout << demo<float>::max(3.4,4.1,-5.0) << endl;
-
+string str("HeLo");
+for(auto itr = str.begin(); itr!= str.end(); itr++)
+{
+	cout << (*itr) << " " ;
+	if(*itr >= 97 && *itr <= 122)
+{
+	*itr= *itr-32;
+}
+	else
+{
+	*itr =*itr +32;
+}
+}
+cout << str << endl;
 return 0;
 }
