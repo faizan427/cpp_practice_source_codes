@@ -1,5 +1,3 @@
-}
-	shallow_copy(shallow_copy &obj)
 {
 	cout << "shallow copy_const invoked" << endl;
 }
