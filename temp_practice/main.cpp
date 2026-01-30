@@ -1,5 +1,3 @@
-{
-	cout << "shallow copy_const invoked" << endl;
 }
 	~shallow_copy()
 {
