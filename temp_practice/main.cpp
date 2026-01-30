@@ -1,5 +1,3 @@
-	int val;
-	shallow_copy(int val):val(val)
 {
 	ptr = new int(val);
 }
