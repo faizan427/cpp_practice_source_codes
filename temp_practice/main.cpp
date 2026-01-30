@@ -1,5 +1,3 @@
-class shallow_copy
-{
 public:
 	int *ptr;
 	int val;
