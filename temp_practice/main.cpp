@@ -1,5 +1,3 @@
-{
-	ptr = new int(val);
 }
 	shallow_copy(shallow_copy &obj)
 {
