@@ -1,5 +1,3 @@
-public:
-	int *ptr;
 	int val;
 	deep_copy(int val ):val(val)
 {
