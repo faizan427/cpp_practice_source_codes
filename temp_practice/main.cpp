@@ -1,5 +1,3 @@
-{
-	delete ptr;
 }
 };
 class deep_copy
