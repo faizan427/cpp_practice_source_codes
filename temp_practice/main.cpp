@@ -1,5 +1,3 @@
-	int val;
-	deep_copy(int val ):val(val)
 {
 	ptr = new int(val);
 }
