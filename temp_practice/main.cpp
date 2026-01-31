@@ -1,5 +1,3 @@
-}
-	~shallow_copy()
 {
 	delete ptr;
 }
