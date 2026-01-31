@@ -1,5 +1,3 @@
-class deep_copy
-{
 public:
 	int *ptr;
 	int val;
