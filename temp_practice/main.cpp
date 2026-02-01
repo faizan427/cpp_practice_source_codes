@@ -1,4 +1,3 @@
-	this->ptr = new int(this->val);
 }
 	~deep_copy()
 {
