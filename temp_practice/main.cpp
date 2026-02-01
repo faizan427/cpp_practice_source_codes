@@ -1,4 +1,3 @@
-{
 	cout << "deep_copy copy_const invoked" << endl;
 	this->val = obj.val;
 	this->ptr = new int(this->val);
