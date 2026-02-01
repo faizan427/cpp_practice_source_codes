@@ -1,5 +1,3 @@
-{
-	ptr = new int(val);
 }
 	deep_copy(deep_copy &obj)
 {
