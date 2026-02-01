@@ -1,4 +1,3 @@
-	~deep_copy()
 {
 	delete ptr;
 }
