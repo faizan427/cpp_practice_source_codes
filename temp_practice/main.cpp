@@ -1,4 +1,3 @@
-}
 	deep_copy(deep_copy &obj)
 {
 	cout << "deep_copy copy_const invoked" << endl;
