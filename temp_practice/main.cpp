@@ -1,27 +1,46 @@
 #include <iostream>
+#include <memory>
 using namespace std;
-class area
+class B_in_stack;
+
+class A_in_stack
 {
 public:
-	int val;
-	area(int val): val(val)
-{}
-bool operator> (area &obj)
+	A_in_stack()
 {
-	return this->val > obj.val;
+	cout << "A created" << endl;
 }
-friend bool operator> (int val, area &obj);
+	shared_ptr<B_in_stack> holds_B_add_in_heap;
 
-};
-bool operator> (int val, area &obj)
+	~A_in_stack()
 {
-	return val > obj.val;
+	cout << "A deleted" << endl;
 }
+};
+
+class B_in_stack
+{
+public:
+	B_in_stack()
+{
+	cout << "B created" << endl;
+}
+	shared_ptr<A_in_stack> holds_A_add_in_heap;
+
+	~B_in_stack()
+{
+	cout << "B deleted" << endl;
+}
+};
+
+
 int main()
 {
-area A(1), B(2);
-cout << "A(1)> B(2) " << boolalpha<<(A > B) << endl;
-cout << "2 > A(1) " << boolalpha <<(2 > A) << endl;
+shared_ptr<A_in_stack>A_in_heap(make_share<A_in_stack>());
+shared_ptr<B_in_stack>B_in_heap(make_share<B_in_stack>());
+A_in_heap->holds_B_add_in_heap = B_in_heap;
+B_in_heap->holds_A_add_in_heap = A_in_heap;
+cout << "A_in_heap->holds_B_add_in_heap"<< A_in_heap->holds_B_add_in_heap.use_count() << endl;
 
 return 0;
 }
