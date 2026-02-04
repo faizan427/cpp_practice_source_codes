@@ -1,33 +1,17 @@
 #include <iostream>
 using namespace std;
-class shape
+class A
 {
 public:
-	virtual void func() =0;
+	int var = 0;
 };
-class square: public shape
-{
-public:
-	void func(){}
-};
-class circle: public shape
-{
-
-public:
-	void func(){}
-};
+class B: virtual public A{};
+class C: virtual public A{};
+class D:  public B,  public C{};
 int main()
 {
-shape *S = new square;
-auto N = dynamic_cast<circle*>(S);
-if(N)
-{
-cout << "casted to " << typeid(N).name() << endl;
-}
-else
-{
-cout << "not casted" << endl;
-}
+D obj;
+cout << obj.C::var << endl;
 
 return 0;
 }
