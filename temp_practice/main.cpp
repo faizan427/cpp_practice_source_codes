@@ -1,28 +1,33 @@
 #include <iostream>
 using namespace std;
-void func(char *str)
-{
-cout << std::strlen(str) << endl;
-int s = std::strlen(str);
-
-int l = s-1;
-cout << l << endl;
-
-int f = 0;
-char temp= '\0';
-while(!(l<=f))
-{
-temp = str[f];
-str[f] = str[l];
-str[l] = temp;
-f++;
-l--;
-}
-}
 int main()
 {
-char arr[100]= {"Hello"};
-func(arr);
-cout << arr << endl;
+int key = 9;
+int arr[]{2,5,6,8,9,18,33,35};
+int low = 0;
+int high = ((sizeof(arr))/(sizeof(arr[0])));
+cout << high << endl;
+while(!(high <= low))
+{
+int mid = (low+high)/2;
+if(arr[mid] > arr[low])
+{
+low = mid +1;
+}
+
+if(arr[mid] < arr[high])
+{
+high = mid-1;
+}
+if(arr[mid] == key)
+{
+cout << key << " found  at " << mid << endl; 
+}
+else
+{
+cout << "no such num" << endl;
+}
+}
+
 return 0;
 }
