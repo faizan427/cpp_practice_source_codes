@@ -1,41 +1,40 @@
 #include <iostream>
-#include <memory>
 using namespace std;
-class A_inside_stack;
-class B_inside_stack
+class complex_numbers
 {
+int real, imag;
 public:
-	B_inside_stack()
+	complex_numbers() = default;
+	complex_numbers(int real, int imag): real(real), imag(imag)
 {
-	cout << "B created" << endl;
+	cout << this->real << " +i" << imag << endl;
 }
-	shared_ptr<A_inside_stack> hold_A_in_heap;
-	~B_inside_stack()
+	complex_numbers operator + (complex_numbers &obj)
 {
-	cout << "B destroyed" << endl;
-}
+	complex_numbers temp;
+	temp.real = this->real+ obj.real;
+	temp.imag = this->imag + obj.imag;
+	cout << temp.real << " +i" << temp.imag << endl;
+	return temp;
+}	
+	friend istream & operator >> (istream &i, complex_numbers &obj);
 };
-class A_inside_stack
+istream & operator >> (istream &i, complex_numbers &obj)
 {
-public:	
-	A_inside_stack()
-{
-	cout << "A Created" << endl;
-}
-	weak_ptr<B_inside_stack> watches_B_in_heap;
-	~A_inside_stack()
-{
-	cout << "A destroyed" << endl;
+	cout << "enter real part" << endl;
+	i >> obj.real;
+	cout << "enter imag part" << endl;
+	i>> obj.imag;
+	cout << obj.real << " +i" << obj.imag << endl;
+	return i;
 }
 
-};
 int main()
 {
-shared_ptr<A_inside_stack> A_inside_heap(make_shared< A_inside_stack> ());
-shared_ptr<B_inside_stack> B_inside_heap(make_shared< B_inside_stack>());
-A_inside_heap->watches_B_in_heap = B_inside_heap;
-B_inside_heap->hold_A_in_heap = A_inside_heap;
-unique_ptr<int>(new int(5));
+complex_numbers N1(2,3) ,N2(3,2);
+complex_numbers N3 = N1+N2;
+complex_numbers N4;
+cin >> N4;
 
 return 0;
 }
