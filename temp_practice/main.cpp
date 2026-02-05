@@ -1,17 +1,33 @@
 #include <iostream>
 using namespace std;
+class shape
+{
+public:
+	virtual void func()=0;
+};
+class square: public shape
+{
+public:
+	void func() override{}
+};
+class circle: public shape
+{
+public:
+	void func() override{}
+
+};
 int main()
 {
-string str = {"hello my name is Hell"};
-cout << str.size() << endl;
-int num_o_w_s =0;
-for(int i =0; i < str.size(); i ++)
+shape * my_shape = new circle;
+auto unknown_shape = static_cast<circle*>(my_shape);
+if(unknown_shape)
 {
-	if(str[i] == ' ')
+cout << "yes !! i was a " << typeid(unknown_shape).name() << endl;
+}
+else
 {
-	num_o_w_s = i;
+cout << "oops i was " << typeid(unknown_shape).name() << endl;
 }
-}
-cout << str.size() - num_o_w_s-1 << endl;
+
 return 0;
 }
