@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-string str = {"hello my name"};
+string str = {"hello my name is Hell"};
 cout << str.size() << endl;
 int num_o_w_s =0;
 for(int i =0; i < str.size(); i ++)
