@@ -1,22 +1,34 @@
-class demo
+#include <iostream>
+#include <mutex>
+using namespace std;
+class singelton
 {
-int val
-
-
-
-
-//10000
+private:
+	static singelton *ptr;
+	singelton()
+{
+	cout << "invoked" << endl;
 }
+public:
+	static singelton * create_instance();
 
+};
+
+singelton * singelton::ptr = nullptr;
+singelton * singelton::create_instance()
+{
+	if(ptr == nullptr)
+{
+	ptr = new singelton();
+}
+	return ptr;
+}
 int main()
 {
+singelton *one = singelton::create_instance();
+singelton *two = singelton::create_instance();
+mutex mtx;
 
-demo 
-try{
-d = move();
+
+return 0;
 }
-cout << come here << endl;
-catch()
-cout << 
-}
-};
