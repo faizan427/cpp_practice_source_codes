@@ -1,33 +1,23 @@
 #include <iostream>
-#include <mutex>
+#include <memory>
 using namespace std;
-class singelton
+class A_inside_stack;
+class B_inside_stack
 {
-private:
-	static singelton *ptr;
-	singelton()
-{
-	cout << "invoked" << endl;
-}
 public:
-	static singelton * create_instance();
-
+	B_inside_stack()
+{
+	cout << "B created" << endl;
+}
+	shared_ptr<A_inside_stack> hold_A_in_heap;
+	~B_inside_stack()
+{
+	cout << "B destroyed" << endl;
+}
 };
-
-singelton * singelton::ptr = nullptr;
-singelton * singelton::create_instance()
-{
-	if(ptr == nullptr)
-{
-	ptr = new singelton();
-}
-	return ptr;
-}
 int main()
 {
-singelton *one = singelton::create_instance();
-singelton *two = singelton::create_instance();
-mutex mtx;
+
 
 
 return 0;
