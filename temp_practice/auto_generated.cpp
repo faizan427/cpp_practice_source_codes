@@ -2,15 +2,15 @@
 using namespace std;
 
 // Auto-generated code
-// Random seed: 7944
+// Random seed: 17389
 
-int randomFunction6954() {
-    int x = 74;
-    int y = 71;
+int randomFunction8714() {
+    int x = 89;
+    int y = 1;
     return x + y;
 }
 
 int main() {
-    cout << "Random output: " << randomFunction14580() << endl;
+    cout << "Random output: " << randomFunction20225() << endl;
     return 0;
 }
