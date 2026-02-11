@@ -4,14 +4,16 @@ class base
 {
 public:
 
-virtual void func(); 
+//virtual void func(); 
 };
 class derived_1 : public base{};
 class derived_2 : public base{};
  
 int main()
-{
-
+{ 
+base b;
+derived_1 d;
+b = d;
 
 return 0;
 }
