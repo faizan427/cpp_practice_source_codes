@@ -1,31 +1,24 @@
 #include <iostream>
 using namespace std;
-class demo
+class observer
 {
 public:
-	int val;
-	int *ptr;
-
-	demo(int val): val(val), ptr(new int(val))
+	char status[100] = "OFF" ;
+	virtual void update() =0;
+};
+class lamp:public observer
 {
-	cout << "normal constructor called" << endl;
-}
-	~demo()
+	public:
+	void update() override
 {
-	delete ptr;
-}
-	demo(demo &obj)
-{
-	
-	this->val = obj.val;
-	
-	this->ptr = new int(obj.val);
+	cout << "lamp is turned " <<  status << endl;
 }
 };
+class subject{};
+class button: public subject{};
 int main()
 {
-demo A(5);
-demo B(A);
+
 
 return 0;
 }
