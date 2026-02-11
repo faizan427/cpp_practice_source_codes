@@ -44,7 +44,7 @@ class button: public subject
 };
 int main()
 {
-observer *corner_light = new light;
+observer *corner_light = new lamp;
 subject *corner_button = new button;
 corner_button->add_observer(corner_light);
 corner_button->operate("ON");
