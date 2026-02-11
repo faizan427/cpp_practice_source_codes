@@ -14,8 +14,34 @@ class lamp:public observer
 	cout << "lamp is turned " <<  status << endl;
 }
 };
-class subject{};
-class button: public subject{};
+class subject
+{
+public:
+	observer *obsr;
+	virtual void add_observer(observer *obs) =0;
+	virtual void notify() =0;
+	virtual void operate (char ary[100]) = 0;
+};
+class button: public subject
+{
+	char arr[100] = "\0";
+	public:
+	void add_observer(observer *obs) override
+{
+	obsr = obs;
+
+}
+	void notify() override 
+{
+	obsr->update();
+
+}
+	void operate(char ary[100]) override
+{
+	strcpy(obsr->status,ary);
+
+}
+};
 int main()
 {
 
