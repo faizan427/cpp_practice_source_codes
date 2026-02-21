@@ -1,35 +1,41 @@
 #include <iostream>
+#include <thread>
+#include <mutex>
 using namespace std;
-class shape
+class singelton
 {
+private:
+static	singelton *ptr ;
+static mutex mtx;
+	singelton()
+{
+	cout << "instance created" << endl;
+} 
 public:
-	virtual void info() 
-{
-	cout << "a generic shape" << endl;
-}
+static singelton * create_instance();
+singelton(singelton &obj) = delete;
+singelton(singelton &&obj) noexcept = delete;
+singelton operator = (singelton &obj) = delete;
 };
-class circle: public shape
+singelton * singelton::ptr = nullptr;
+mutex singelton::mtx;
+singelton *singelton::create_instance()
 {
-public:
-	void info() override 
+	lock_guard<mutex> my_lock(mtx);	
+	if(ptr == nullptr)
 {
-	cout << "a circle" << endl;
+	ptr = new singelton;
 }
-};
-class square: public shape
-{
-public:
-	void info() override 
-{
-	cout << "a square" << endl;
+	return ptr;
 }
-};
-
 int main()
 {
-circle C;
-shape &unknown = C;
-unknown.info();
+auto func_1 = [=](){singelton *ins_1 =  singelton::create_instance();};
+auto func_2 = [=](){singelton *ins_2 =  singelton::create_instance();};
+thread t1(func_1);
+thread t2(func_2);
+t1.join();
+t2.join();
 
 return 0;
 }
