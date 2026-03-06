@@ -3,39 +3,37 @@ using namespace std;
 class shape
 {
 public:
-virtual	void S1()
-{
-	cout << "S1 called shape" << endl;
-}	void S2()
-{
-	cout << "S2 called " << endl;
-}
+	virtual void info() =0;
 };
-
 class square: public shape
 {
 public:
-	void S1()
+	void info()
 {
-	cout << "S1 called square" << endl;
-}
-
-		void SQ3()
-{
-	cout << "SQ3 called " << endl;
-}		void SQ4()
-{
-	cout << "SQ4 called " << endl;
+	cout << "i am square" << endl;
 }
 };
-void show(shape S)
+class circle: public shape
 {
-cout << "taken " << typeid(S).name() << endl;
+public:
+	void info()
+{
+	cout << "i am circle" << endl;
 }
-class circle: public shape{};
+};
+
 int main()
 {
 shape *S = new square;
-S->S1() ;
+S->info();
+auto unknown = static_cast<circle*>(S);
+if(unknown)
+{
+cout << "i am " <<typeid(unknown).name() << endl;
+}
+else
+{
+cout << "i was something else" << endl;
+}
 return 0;
 }
