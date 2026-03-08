@@ -1,39 +1,33 @@
 #include <iostream>
 using namespace std;
-class shape
+class my_string
 {
+private:
+	char *ptr;
+	int length;
 public:
-	virtual void info() =0;
-};
-class square: public shape
+	my_string(char *input)
 {
-public:
-	void info()
+	this->ptr = input;
+	length = std::strlen(input);
+	ptr = new char[length +1];
+	std::strcpy(this->ptr, input);
+} 
+	void display()
 {
-	cout << "i am square" << endl;
+	cout << ptr << endl;
+}
+	char  operator[](int index)
+{
+	return ptr[index];
 }
 };
-class circle: public shape
-{
-public:
-	void info()
-{
-	cout << "i am circle" << endl;
-}
-};
-
 int main()
 {
-shape *S = new square;
-S->info();
-auto unknown = static_cast<circle*>(S);
-if(unknown)
-{
-cout << "i am " <<typeid(unknown).name() << endl;
-}
-else
-{
-cout << "i was something else" << endl;
-}
+char *c = {"Hello"};
+my_string str(c);
+
+cout << str[1];
+str.display();
 return 0;
 }
